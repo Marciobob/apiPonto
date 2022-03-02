@@ -177,9 +177,9 @@ def horaextra():
   
 if  __name__ == "__main__":
 
-    HOST = os.environ.get('SERVER_HOST', '127.0.0.1')
+    HOST = os.environ.get('PORT', '0.0.0.0')
     try:
-        PORT = int(os.environ.get('SERVER_PORT', "5000"))
+        PORT = int(os.environ.get('PORT', "5000"))
 
     except ValueError:
         PORT = 5000
