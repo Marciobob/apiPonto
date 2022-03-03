@@ -1,3 +1,4 @@
+# encoding: utf-8
 import sqlite3
 from time import strftime
 
