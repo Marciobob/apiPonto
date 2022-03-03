@@ -178,15 +178,15 @@ def horaextra():
   
 if  __name__ == "__main__":
 
-    #HOST = os.environ.get('PORT', '0.0.0.0')
-    #try:
-      #  PORT = int(os.environ.get('PORT', "5000"))
+    HOST = os.environ.get('PORT', '0.0.0.0')
+    try:
+      PORT = int(os.environ.get('PORT', "5000"))
 
-   # except ValueError:
-        #PORT = 5000
+    except ValueError:
+      PORT = 5000
     
     #inicia aplicaçao
-    app.run()
+    app.run(HOST,PORT)
     #webview.start(HOST, PORT)
 
 
