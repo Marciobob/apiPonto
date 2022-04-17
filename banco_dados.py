@@ -5,7 +5,7 @@ from time import strftime
 
 login = 'funcionarios'
 cpf2 = 'fechamento'
-
+adm = "encarregados"
 
 #inicia o banco de dados de usuarios
 conecxao = sqlite3.connect('usuarios.db')
@@ -18,6 +18,16 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS {}(ID INTEGER NOT NULL PRIMARY KEY 
                            Token TEXT NOT NULL,
                            Email CHARSET utf8,
                            Senha TEXT NOT NULL);""".format(login))
+
+cursor.execute("""CREATE TABLE IF NOT EXISTS {}(ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                           Nome TEXT NOT NULL,
+                           Cpf TEXT NOT NULL,
+                           Fone TEXT NOT NULL,
+                           Token TEXT NOT NULL,
+                           Email CHARSET utf8,
+                           Senha TEXT NOT NULL);""".format(adm))
+                           
+
                            
 cursor.execute("""CREATE TABLE IF NOT EXISTS {}(ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     Cpf TEXT,

@@ -10,7 +10,11 @@ import base64
 
 
 def EntradaManual(jsonclient):
+  	
     cpf = jsonclient["cpf"]
+    
+    print("+++++",cpf)
+    
     entrada = jsonclient["entrada"]
     
     saidaalmoco = jsonclient["saidaalmoco"]
@@ -19,16 +23,11 @@ def EntradaManual(jsonclient):
     saidacafe = jsonclient["saidacafe"]
     retornocafe = jsonclient["retornocafe"]
     saida = jsonclient["saida"]
-    dataAtual = jsonclient["dataAtual"]
-
-    if dataAtual[0] == '0':
+    datas = jsonclient["dataAtual"]
     
-        n = len(dataAtual)
-        dataAtual = dataAtual[1:n]
-        print('nova',dataAtual)
-
-    print(dataAtual)
-
+    dataAtual = datas.replace("/", "")
+    dataAtual = datas.replace(".", "")
+    
     cpf = cpf.replace(".", "")
     cpf = cpf.replace("-", "")
     
@@ -40,8 +39,9 @@ def EntradaManual(jsonclient):
     cursor = conecxao.cursor()
     print("Conectado ao banco de dados",dataAtual)
     
+    query = f"SELECT * FROM {cpf3} WHERE Data LIKE '{dataAtual}'"
     try:
-        cursor.execute("SELECT Data FROM {} WHERE Data={}".format(cpf3,dataAtual))
+        cursor.execute(query)
         
         verifica_entrada = cursor.fetchone()
         
@@ -63,7 +63,6 @@ def EntradaManual(jsonclient):
                 if error:
                     print(error)
                     resp = {"status": str(error)}
-
                     return resp
                 
                 

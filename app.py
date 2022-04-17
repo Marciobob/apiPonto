@@ -8,6 +8,7 @@ import hmac
 import hashlib
 import base64
 
+from BuscaFuncionario import BuscaFuncionario
 from EntradaManual import EntradaManual
 from CadastroUser import CadastroUser
 from Loguin import Loguin
@@ -17,8 +18,36 @@ from CadastraPosto import CadastraPosto
 from HoraExtra import HoraExtra
 from Horarios import Horarios
 from CadastroFechamento import CadastroFechamento
+from CadastroAdm import CadastroAdm
 
 app = Flask(__name__)
+
+#endpoint para buscar dados do funcionario
+@app.route("/buscafuncionario", methods=["POST"])
+def Buscafuncionario():
+  print("rota busca")
+  body = request.data
+  decode = body.decode('utf-8')
+  jsonclient = json.loads(decode)
+
+  retorno = BuscaFuncionario(jsonclient)
+  resp = jsonify(retorno)
+
+  resp.headers['Access-Control-Allow-Origin']='*'
+  return resp
+
+@app.route("/cadastro_adm", methods=["POST"])
+def Cadastro_adm():
+  print("rota postos")
+  body = request.data
+  decode = body.decode('utf-8')
+  jsonclient = json.loads(decode)
+
+  retorno = CadastroAdm(jsonclient)
+  resp = jsonify(retorno)
+
+  resp.headers['Access-Control-Allow-Origin']='*'
+  return resp
 
 #endpoint para encarregado de cadastrar entradas de funcionarios   
 @app.route("/entradamanual", methods=["POST"])
@@ -178,7 +207,7 @@ def horaextra():
   
 if  __name__ == "__main__":
 
-    HOST = os.environ.get('PORT', '0.0.0.0')
+    HOST = os.environ.get('PORT', '127.0.0.1')
     try:
       PORT = int(os.environ.get('PORT', "5000"))
 
