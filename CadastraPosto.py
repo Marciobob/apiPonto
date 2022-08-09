@@ -24,7 +24,7 @@ def CadastraPosto(jsonclient):
   horas = hora.replace(":","")
  
   print(token,endereco,numero,data,hora,botao)
-  print("@@@@@",token)
+ # print("@@@@@",token)
   secret_key = '52d3f853c19f8b63c0918c126422aa2d99b1aef33ec63d41dea4fadf19406e54'
   JWT = token
   
@@ -42,7 +42,7 @@ def CadastraPosto(jsonclient):
   if b64_signature_checker != b64_signature:
       raise Exception('Assinatura inválida')
   
-  print("&&&&&&&&",payload["cpf"])
+  #print("&&&&&&&&",payload["cpf"])
   
   cpf3 = str("posto"+payload["cpf"])
   
@@ -56,10 +56,10 @@ def CadastraPosto(jsonclient):
   
   verifica_entrada = cursor.fetchall()
   
-  print('sou verifa',verifica_entrada)
+  #print('sou verifa',verifica_entrada)
   lista_posto = verifica_entrada
   
-  print(lista_posto)
+  #print(lista_posto)
   
   if lista_posto == []:
     
@@ -69,7 +69,7 @@ def CadastraPosto(jsonclient):
     
     verifica_entrad = cursor.fetchall()
     
-    print('sou verifahhhh',verifica_entrad)
+    #print('sou verifahhhh',verifica_entrad)
     
   
     resp = {"status": "ok"}
@@ -79,7 +79,7 @@ def CadastraPosto(jsonclient):
   elif lista_posto != []:
    
     for res in lista_posto:
-      print("sou ress",res[2])
+      #print("sou ress",res[2])
       
       if res[2] == endereco:
         
@@ -92,7 +92,7 @@ def CadastraPosto(jsonclient):
   
       verifica_entrad = cursor.fetchall()
   
-      print('sou veriftttth',verifica_entrad)
+      #print('sou veriftttth',verifica_entrad)
       
       resp = {"status": "ok"}
 
